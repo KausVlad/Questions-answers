@@ -49,7 +49,7 @@ function Questions() {
   }
 
   return (
-    <>
+    <div className="questions">
       {conditionStateQuestion ? (
         <>
           <h2>{questions[currentQuestion].q}</h2>
@@ -61,19 +61,24 @@ function Questions() {
                   getNextQuestion(index);
                 }}
               >
-                tttt
+                Confirm answer
               </button>
             </li>
           ))}
+          <h3>
+            Question {currentQuestion}/{questions.length}
+          </h3>
         </>
       ) : (
         <>
           <h2>Your Results</h2>
-          <p>{score}/4</p>
+          <h1>
+            Your score is: {score} / {questions.length}
+          </h1>
           <button onClick={resetQuestions}>Reset</button>
         </>
       )}
-    </>
+    </div>
   );
 }
 

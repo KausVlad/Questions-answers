@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react';
+import './App.scss';
 
 import Questions from './components/Questions/Questions';
 
@@ -8,37 +9,37 @@ const questions = [
   {
     q: 'What is React?',
     a: [
-      'A library for managing user interfaces',
-      'A11 declarative, efficient, and flexible JavaScript library',
-      'A22 declarative, efficient, and flexible JavaScript library',
-      'A33 declarative, efficient, and flexible JavaScript library',
+      'JavaScript library for building user interfaces.',
+      'Programming language.',
+      'Server-side framework.',
+      'Database management system.',
     ],
   },
   {
     q: 'What is Redux?',
     a: [
-      '5A declarative, efficient, and flexible JavaScript library',
-      '6A declarative, efficient, and flexible JavaScript library',
-      '7A declarative, efficient, and flexible JavaScript library',
-      '8A declarative, efficient, and flexible JavaScript library',
+      'Programming language used for building mobile applications.',
+      'Database management system for storing and retrieving data.',
+      'State management library for JavaScript applications.',
+      'Server-side framework for building web APIs.',
     ],
   },
   {
     q: 'What is Context?',
     a: [
-      '1A declarative, efficient, and flexible JavaScript library',
-      '2A declarative, efficient, and flexible JavaScript library',
-      '3A declarative, efficient, and flexible JavaScript library',
-      '4A declarative, efficient, and flexible JavaScript library',
+      'Styling library for applying CSS to components.',
+      'Form validation framework for handling user input.',
+      'Server-side rendering tool for improved performance.',
+      'Feature that allows data to be passed down through the component tree without explicit prop passing.',
     ],
   },
   {
-    q: 'What is Context?',
+    q: 'What is JSX?',
     a: [
-      '12A declarative, efficient, and flexible JavaScript library',
-      '22A declarative, efficient, and flexible JavaScript library',
-      '32A declarative, efficient, and flexible JavaScript library',
-      '42A declarative, efficient, and flexible JavaScript library',
+      'Styling syntax for applying CSS to components.',
+      'Server-side rendering technique for improved performance.',
+      'State management library for handling component state.',
+      'Syntax extension that allows writing HTML-like code in JavaScript.',
     ],
   },
 ];
@@ -47,7 +48,7 @@ function App() {
   const [questionsState, setQuestionsState] = useState({
     currentQuestion: 0,
     answers: [],
-    correctAnswers: [0, 3, 2, 3],
+    correctAnswers: [0, 2, 3, 3],
   });
   return (
     <QuestionsContext.Provider
