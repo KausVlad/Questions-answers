@@ -71,7 +71,7 @@ function Questions() {
         </>
       ) : (
         <>
-          <h2>Your Results</h2>
+          <h1>Your Results</h1>
           <h1>
             Your score is: {score} / {questions.length}
           </h1>
