@@ -1,22 +1,17 @@
-import { useContext, useState, useEffect } from 'react';
-import { QuestionsContext } from '../../App';
+import { useState, useEffect } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { actions } from '../../store/questionsState/questionsState.slice';
 
 function Questions() {
-  const { questionsState, setQuestionsState, questions } =
-    useContext(QuestionsContext);
-
   const [score, setScore] = useState(0);
 
-  const currentQuestion = questionsState.currentQuestion;
-  const conditionStateQuestion = currentQuestion < questions.length;
+  const { questionsState } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
-  function getNextQuestion(index) {
-    setQuestionsState({
-      ...questionsState,
-      currentQuestion: currentQuestion + 1,
-      answers: [...questionsState.answers, index],
-    });
-  }
+  const currentQuestion = questionsState.currentQuestion;
+  const conditionStateQuestion =
+    currentQuestion < questionsState.questions.length;
 
   function calculateScore() {
     const correctAnswers = questionsState.correctAnswers;
@@ -40,11 +35,7 @@ function Questions() {
   });
 
   function resetQuestions() {
-    setQuestionsState({
-      ...questionsState,
-      currentQuestion: 0,
-      answers: [],
-    });
+    dispatch(actions.resetQuestions());
     setScore(0);
   }
 
@@ -52,13 +43,14 @@ function Questions() {
     <div className="questions">
       {conditionStateQuestion ? (
         <>
-          <h2>{questions[currentQuestion].q}</h2>
-          {questions[currentQuestion].a.map((value, index) => (
+          <h2>{questionsState.questions[currentQuestion].q}</h2>
+          {questionsState.questions[currentQuestion].a.map((value, index) => (
             <li key={index}>
               {value}{' '}
               <button
                 onClick={() => {
-                  getNextQuestion(index);
+                  // getNextQuestion(index);
+                  dispatch(actions.getNextQuestion(index));
                 }}
               >
                 Confirm answer
@@ -66,14 +58,14 @@ function Questions() {
             </li>
           ))}
           <h3>
-            Question {currentQuestion}/{questions.length}
+            Question {currentQuestion}/{questionsState.questions.length}
           </h3>
         </>
       ) : (
         <>
           <h1>Your Results</h1>
           <h1>
-            Your score is: {score} / {questions.length}
+            Your score is: {score} / {questionsState.questions.length}
           </h1>
           <button onClick={resetQuestions}>Reset</button>
         </>
